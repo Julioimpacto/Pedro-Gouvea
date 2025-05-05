@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Gouvêa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #a67c52;
+      --secondary-color: #1a1a1a;
+      --text-color: #ffffff;
+      --white: #2a2a2a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 8px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .social-icons a {
+      margin-left: 15px;
+      color: var(--primary-color);
+      font-size: 32px;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--text-color);
+    }
+
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(120deg, #0a0a0a 60%, #1a237e 80%, #00c853 100%);
+      background-image: url('imagens/capa.png');
+      background-size: cover;
+      background-position: top center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @media (min-width: 1025px) {
+  .hero {
+    display: flex;
+    align-items: flex-end;     /* empurra conteúdo para baixo */
+    justify-content: center;
+    height: 100vh;
+    padding-bottom: 0vh;       /* distância da base da tela */
+  }
+
+  .hero-content {
+    padding-top: 0;
+  }
+
+  .hero h1 {
+    margin-bottom: 0;
+    line-height: 1.1;
+  }
+
+  .hero h2 {
+    margin-top: -0.5em; /* puxa o subtítulo pra cima */
+    line-height: 1;
+  }
+}
+
+    @media (max-width: 1023px) {
+    .hero {
+        background: linear-gradient(120deg, #0a0a0a 60%, #1a237e 80%, #00c853 100%);
+        background-image: url('imagens/capa1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      color: #a67c52;
+      padding-bottom: 5vw;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+
+    .hero h1 {
+      font-size: 4vw;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 0.2em;
+      color: #a67c52;
+    }
+
+    .hero h2 {
+      font-size: 2vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: #a67c52;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background-color: #25D366;
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 18px;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+    }
+
+    .services {
+      padding: 100px 0;
+      background: linear-gradient(120deg, #0a0a0a 70%, #1a237e 100%);
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: var(--primary-color);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--secondary-color);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .service-card:nth-child(1)::before {
+      background-image: url('imagens/capa.png');
+    }
+
+    .service-card:nth-child(2)::before {
+      background-image: url('imagens/celulares.webp');
+    }
+
+    .service-card:nth-child(3)::before {
+      background-image: url('imagens/partidos.jpg');
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-card i {
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery {
+      padding: 100px 0;
+      background: linear-gradient(100deg, #0a0a0a 70%, #00c853 100%);
+    }
+
+    .gallery h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: var(--primary-color);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 24px;
+      color: var(--primary-color);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+
+      .social-icons {
+        display: none;
+      }
+
+      .hero-image {
+        width: 100%;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        padding-top: 10px !important;
+        transform: translateY(-15%) !important;
+      }
+
+      .hero-content img {
+        height: 180px !important;
+        margin-bottom: -8px !important;
+      }
+
+      .hero h1 {
+        font-size: 42px !important;
+        margin-bottom: 0.1em !important;
+      }
+      
+      .hero h2 {
+        font-size: 28px !important;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sobre-mim > div {
+        flex-direction: column;
+      }
+      .sobre-mim > div > div {
+        max-width: 100% !important;
+        padding: 20px !important;
+      }
+      .sobre-mim img {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .servicos-botoes a {
+        font-size: 1.2em !important;
+        padding: 16px 0 !important;
+      }
+    }
+
+    .servicos-parallax {
+      background: url('imagens/papa.jpg') no-repeat center center fixed !important;
+      background-size: cover !important;
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .servicos-botoes a {
+      background: #000 !important;
+      color: #fff !important;
+    }
+
+    .servicos-botoes a:hover {
+      background: transparent !important;
+      color: #fff !important;
+      border: 3px solid #fff !important;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    .main-nav a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .main-nav {
+        display: none !important;
+      }
+    }
+    .sobre-mim {
+      background: url('imagens/fundo.jpg') no-repeat center center !important;
+      background-size: cover !important;
+      padding: 60px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .contato {
+      background: linear-gradient(120deg, #0a0a0a 70%, #ff6f00 100%);
+    }
+    .sobre-mim, .sobre-mim * {
+      color: #fff !important;
+    }
+    .sobre-mim span {
+      color: var(--primary-color) !important;
+    }
+    .sobre-mim a {
+      color: var(--primary-color) !important;
+    }
+    .servicos-botoes a {
+      text-decoration: none !important;
+    }
+  </style>
+</head>
+<body>
+<header>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+      <div class="header-content" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="#hero" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+          <span style="color: #a67c52; font-size: 1.5em; font-weight: 700; font-family: 'Montserrat', sans-serif;">Pedro Gouvêa</span>
+        </a>
+        <nav class="main-nav" style="display: flex; gap: 32px; align-items: center;">
+          <a href="#hero" style="color: #a67c52; font-weight: 500; text-decoration: none; font-size: 1.1em;">Início</a>
+          <a href="#sobre-mim" style="color: #a67c52; font-weight: 500; text-decoration: none; font-size: 1.1em;">Sobre Mim</a>
+          <a href="#servicos" style="color: #a67c52; font-weight: 500; text-decoration: none; font-size: 1.1em;">Serviços</a>
+          <a href="#trabalhos" style="color: #a67c52; font-weight: 500; text-decoration: none; font-size: 1.1em;">Principais Realizações</a>
+          <a href="#contato" style="color: #a67c52; font-weight: 500; text-decoration: none; font-size: 1.1em;">Contato</a>
+        </nav>
+  <div class="social-icons">
+          <a href="https://www.facebook.com/share/1EjDM4nz1S/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/pedrogouveasv?igsh=MW13ZXhtMDVmd2Q3cA==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="mobile-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+  </div>
+</header>
+
+  <!-- Seção Hero -->
+  <section id="hero" class="hero">
+    <div class="hero-content" style="position: relative; z-index: 2; width: 100%; text-align: center; color: #a67c52; padding-bottom: 5vw; text-shadow: 0 2px 16px rgba(0,0,0,0.18);">
+      <h1 style="font-size: 8vw; font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: 1px; margin-bottom: 0.2em; color: #a67c52; text-shadow: 2px 2px 4px black;">Pedro Gouvêa</h1>
+
+      <<h2 style="font-size: 4vw; font-family: 'Montserrat', sans-serif; font-weight: 300; letter-spacing: 2px; color: #a67c52;text-shadow: 2px 2px 4px black;"> Administrador e Gestor Público</h2>
+    </div>
+  </section>
+  <!-- Seção Sobre Mim -->
+  <section id="sobre-mim" class="sobre-mim" style="background: #e7e2d7; padding: 60px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div style="display: flex; align-items: flex-start; justify-content: center; max-width: 1200px; width: 100%; flex-wrap: wrap; background: none;">
+      <div style="flex: 1 1 50%; max-width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-width: 320px;">
+        <span style="font-family: 'Playfair Display', serif; font-size: 2.5em; font-weight: 700; letter-spacing: 0.08em; color: #222; text-transform: uppercase; margin-bottom: -28px; margin-left: 32px; z-index: 2; position: relative; background: #fff; padding: 0 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); align-self: flex-start;">Quem é Ele?</span>
+        <img src="imagens/pedro2.jpg" alt="Sobre Fabiolla" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.10); border: 16px solid #fff; margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;" />
+        <a href="#" style="display: inline-block; background: #fff; color: #a67c52; padding: 18px 40px; border-radius: 12px; font-size: 1.6em; font-family: 'Playfair Display', serif; font-weight: 700; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-top: 32px; margin-left: 0; margin-right: 0; text-align: center;">Compromisso com a População</a>
+      </div>
+      <div style="flex: 1 1 50%; max-width: 50%; color: #222; padding: 40px 40px 40px 40px; font-size: 1.15em; text-align: left; min-width: 320px; display: flex; flex-direction: column; justify-content: center;">
+        <p style="margin-bottom: 32px; line-height: 1.6;">
+          Pedro Gouvêa é um líder público com uma trajetória marcada pelo compromisso com as pessoas e pela realização de grandes transformações. Com uma carreira sólida como vereador, secretário municipal e prefeito, ele tem no serviço público sua maior vocação: cuidar de gente e construir uma cidade mais justa, segura e próspera.
+
+Administrador de empresas por formação, ele sempre uniu visão estratégica com ação concreta. Foi responsável por grandes obras de infraestrutura, que melhoraram a mobilidade urbana e garantiram mais dignidade para milhares de famílias. Investiu em saúde de qualidade, ampliando o acesso da população a exames, consultas e atendimentos humanizados. Na segurança, trabalhou em parceria com órgãos estaduais para fortalecer a presença da guarda municipal e promover ações de prevenção à violência.
+
+A geração de empregos sempre esteve no centro de suas políticas públicas. Como gestor, criou programas de qualificação profissional, incentivou o empreendedorismo e atraiu empresas para o município, promovendo o desenvolvimento econômico com inclusão social. Também foi pioneiro em ações voltadas à sustentabilidade e proteção do meio ambiente, com projetos de reflorestamento urbano, tratamento de resíduos e preservação das nascentes.
+
+Além da carreira política, é empresário de sucesso na área de marketing político, ajudando lideranças a se conectarem com suas comunidades de forma ética, moderna e eficaz. Essa experiência reforça sua capacidade de comunicação, planejamento e inovação, habilidades que o diferenciam na vida pública.
+
+Para Pedro Gouvêa, ser político é, antes de tudo, ouvir o povo, entender suas necessidades e agir com responsabilidade e coragem. Seu trabalho fala por si: ele é reconhecido por transformar ideias em realidade, com gestão eficiente, respeito ao dinheiro público e amor pela cidade.
+
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Fim da seção Sobre Mim -->
+
+  <!-- Seção Serviços -->
+  <section id="servicos" class="servicos-parallax" style="position: relative; width: 100vw; min-height: 100vh; display: flex; align-items: center; justify-content: center; background-image: url('imagem/servicos.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="servicos-botoes" style="position: relative; width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; z-index: 2;">
+      <a href="#" style="width: 70%; min-width: 280px; max-width: 700px; background: #a9a39a; color: #fff; font-size: 2em; font-family: 'Montserrat', sans-serif; font-weight: 500; border-radius: 18px; padding: 10px 0; border: 3px solid #fff; text-align: center; margin: 0 auto; transition: background 0.2s;">Construção de Imagem</a>
+      <a href="#" style="width: 70%; min-width: 280px; max-width: 700px; background: #a9a39a; color: #fff; font-size: 2em; font-family: 'Montserrat', sans-serif; font-weight: 500; border-radius: 18px; padding: 10px 0; border: 3px solid #fff; text-align: center; margin: 0 auto; transition: background 0.2s;">Assessoria de Imprensa</a>
+      <a href="#" style="width: 70%; min-width: 280px; max-width: 700px; background: #a9a39a; color: #fff; font-size: 2em; font-family: 'Montserrat', sans-serif; font-weight: 500; border-radius: 18px; padding: 10px 0; border: 3px solid #fff; text-align: center; margin: 0 auto; transition: background 0.2s;">Planejamento de Campanha</a>
+      <a href="#" style="width: 70%; min-width: 280px; max-width: 700px; background: #a9a39a; color: #fff; font-size: 2em; font-family: 'Montserrat', sans-serif; font-weight: 500; border-radius: 18px; padding: 10px 0; border: 3px solid #fff; text-align: center; margin: 0 auto; transition: background 0.2s;">Marketing Digital</a>
+    </div>
+    <div style="position: absolute; inset: 0; background: #fff; opacity: 0.5; z-index: 1;"></div>
+  </section>
+
+  <!-- Botões de Serviços -->
+  <section class="services">
+    <div class="container">
+      <h2>Nossos Serviços</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fa-brands fa-black-tie"></i>
+          <h3>Consultoria de Imagem</h3>
+          <p>Análise completa do seu estilo pessoal e orientações para valorizar sua imagem.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-desktop"></i>
+          <h3>Mídias Digitais</h3>
+          <p>Criação de Conteúdo Digital e Engajamento de Eleitores.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-flag"></i>
+          <h3>Filiação Partidária</h3>
+          <p>Saiba Como Fazer as Melhores Escolhas Políticas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Nossos Trabalhos - Carrossel -->
+  <section id="trabalhos" class="gallery" style="background: #f9f5f0; padding: 100px 0;">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 36px; margin-bottom: 50px; color: var(--primary-color);">Principais Realizações</h2>
+      <div class="carousel-wrapper" style="position: relative; max-width: 900px; margin: 0 auto;">
+        <button class="carousel-btn prev" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 2em; color: #a67c52; box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: pointer; z-index: 2;">&#8592;</button>
+        <div class="carousel-track" style="display: flex; overflow: hidden; scroll-behavior: smooth;">
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/hospital.jpeg" alt="Trabalho 1" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Construção de Hospital</p>
+            </div>
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/habitacoes.webp" alt="Trabalho 2" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Construção de Moradias</p>
+            </div>
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/iluminação.png" alt="Trabalho 3" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Iluminação das Praias</p>
+            </div>
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/ponte.jpg" alt="Trabalho 4" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Reforma da Ponte Barreiros</p>
+            </div>
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/creche.jpeg" alt="Trabalho 5" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Construção de Creches</p>
+            </div>
+            <div style="text-align: center; width: 360px; margin: 0 10px; flex-shrink: 0;">
+              <img src="imagens/quarentenario.jpeg" alt="Trabalho 6" style="width: 100%; height: 360px; object-fit: cover; border-radius: 10px;" />
+              <p style="margin-top: 12px; font-weight: bold; font-size: 18px; color: var(--primary-color);">Iluminação do Quarentenário</p>
+            </div>
+          </div>
+        <button class="carousel-btn next" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 2em; color: #a67c52; box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: pointer; z-index: 2;">&#8594;</button>
+      </div>
+    </div>
+  </section>
+  <!-- Fim da seção Nossos Trabalhos - Carrossel -->
+
+  <!-- Seção Contato -->
+  <section id="contato" class="contato" style="background: #1a1a1a; padding: 30px 0 40px 0; color: #ffffff; text-align: center;">
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <span style="font-family: 'Montserrat', sans-serif; font-size: 2.2em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; text-align: center; text-decoration: underline;">Entre em Contato</span>
+        <p style="font-size: 1.5em; margin: 40px 0;">
+          Mande suas dúvidas através de mensagens, por e-mail<br>
+          ou nos chame pelo WhatsApp clicando aqui.
+        </p>
+        <a href="https://wa.me/13996571510" target="_blank" style="display: inline-block; margin-bottom: 40px;">
+          <i class="fab fa-whatsapp" style="font-size: 4em; color: #fff; background: none;"></i>
+        </a>
+        <div style="font-size: 1.4em; letter-spacing: 1px;">@pedrogouveasv</div>
+      </div>
+    </div>
+  </section>
+  <!-- Fim da seção Contato -->
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Pedro Gouvêa | Produzido por: <img src="imagens/logoj3.png" alt="J3 Digital Mídia" style="display:inline; height:28px; vertical-align:middle; position:relative; top:-2px; margin-left:8px;"></p>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Parallax dinâmico na imagem de fundo da hero
+    window.addEventListener('scroll', function() {
+      const scrolled = window.scrollY;
+      const hero = document.querySelector('.hero');
+      // Ajuste o valor 0.3 para mais ou menos movimento
+      hero.style.backgroundPosition = `top ${scrolled * 0.3}px center`;
+    });
+
+    // Menu mobile
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+      const socialIcons = document.querySelector('.social-icons');
+      socialIcons.style.display = socialIcons.style.display === 'none' ? 'flex' : 'none';
+    });
+
+    // Carrossel simples
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    let scrollAmount = 0;
+    const scrollStep = 320; // largura da imagem + margem
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+    });
+  </script>
+
+  <style>
+    @media (max-width: 900px) {
+      .carousel-track img {
+        width: 220px !important;
+        height: 220px !important;
+      }
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</body>
+</html>
